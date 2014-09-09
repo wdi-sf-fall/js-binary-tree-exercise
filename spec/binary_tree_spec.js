@@ -37,31 +37,31 @@ describe("BinTree", function(){
     });
 
     it("#search", function(){
-      expect(binTree.hasOwnProperty("search")).toBe(true);
+      expect(proto.hasOwnProperty("search")).toBe(true);
     });
 
     it("#hieght", function(){
-      expect(binTree.hasOwnProperty("toArray")).toBe(true);
+      expect(proto.hasOwnProperty("height")).toBe(true);
     });
 
     it("#max", function(){
-      expect(binTree.hasOwnProperty("max")).toBe(true);
+      expect(proto.hasOwnProperty("max")).toBe(true);
     });
 
     it("#min", function(){
-      expect(binTree.hasOwnProperty("min")).toBe(true);
+      expect(proto.hasOwnProperty("min")).toBe(true);
     });
 
     it("#toArray", function(){
-      expect(binTree.hasOwnProperty("toArray")).toBe(true);
+      expect(proto.hasOwnProperty("toArray")).toBe(true);
     });
 
     it("#sortedArray", function(){
-      expect(binTree.hasOwnProperty("sortedArray")).toBe(true);
+      expect(proto.hasOwnProperty("sortedArray")).toBe(true);
     });
 
     it("#isLeaf", function(){
-      expect(binTree.hasOwnProperty("isLeaf")).toBe(true);
+      expect(proto.hasOwnProperty("isLeaf")).toBe(true);
     });    
 
   });
