@@ -14,7 +14,7 @@ describe("BinTree", function(){
 
     it("right", function(){
       expect(binTree.hasOwnProperty("right")).toBe(true);
-    })
+    });
   });
 
   describe("has constructor defaults", function(){
