@@ -1,4 +1,4 @@
-var BinTree = require("../binary_tree.js")
+var BinTree = require("../binary_tree.js");
 
 describe("BinTree", function(){
 
@@ -14,7 +14,7 @@ describe("BinTree", function(){
 
     it("right", function(){
       expect(binTree.hasOwnProperty("right")).toBe(true);
-    })
+    });
   });
 
   describe("has constructor defaults", function(){
@@ -30,6 +30,7 @@ describe("BinTree", function(){
   });
 
   describe("prototype has method", function(){
+    var binTree = new BinTree();
     var proto = BinTree.prototype;
 
     it("#insert", function(){
@@ -40,34 +41,14 @@ describe("BinTree", function(){
       expect(proto.hasOwnProperty("search")).toBe(true);
     });
 
-    it("#hieght", function(){
-      expect(proto.hasOwnProperty("height")).toBe(true);
-    });
-
-    it("#max", function(){
-      expect(proto.hasOwnProperty("max")).toBe(true);
-    });
-
-    it("#min", function(){
-      expect(proto.hasOwnProperty("min")).toBe(true);
-    });
-
-    it("#toArray", function(){
-      expect(proto.hasOwnProperty("toArray")).toBe(true);
-    });
-
-    it("#sortedArray", function(){
-      expect(proto.hasOwnProperty("sortedArray")).toBe(true);
-    });
-
     it("#isLeaf", function(){
       expect(proto.hasOwnProperty("isLeaf")).toBe(true);
-    });    
+    });
 
   });
 
   describe("#insert", function(){
-    var binTree 
+    var binTree
 
     beforeEach(function(){
       binTree = new BinTree(5);
@@ -91,7 +72,7 @@ describe("BinTree", function(){
 
   });
 
-  describe("#search", function(){ 
+  describe("#search", function(){
     var binTree = new BinTree(5);
     binTree.insert(3)
         .insert(1).insert(2).insert(6)
@@ -109,76 +90,4 @@ describe("BinTree", function(){
     });
   });
 
-  describe("#max", function(){ 
-    var binTree;
-
-    beforeEach(function(){
-      binTree = new BinTree(5);
-    });
-
-    it("should find max in a tree with many values", function(){
-      binTree.insert(3)
-        .insert(1).insert(2).insert(6)
-        .insert(7).insert(8).insert(9);
-      expect(binTree.max()).toBe(9);
-    });
-
-    it("should return this.value when this.right is null", function(){
-      expect(binTree.max()).toBe(binTree.value);
-    });
-
-  });  
-
-  describe("#min", function(){ 
-    var binTree;
-
-    beforeEach(function(){
-      binTree = new BinTree(5);
-    });
-
-    it("should find min in a tree with many values", function(){
-      binTree.insert(3)
-        .insert(1).insert(2).insert(6)
-        .insert(7).insert(8).insert(9);
-      expect(binTree.min()).toBe(1);
-    });
-
-    it("should return this.value when this.left is null", function(){
-      expect(binTree.min()).toBe(binTree.value);
-    });
-
-  });
-  describe("#sortedArray", function(){ 
-    var binTree;
-
-    beforeEach(function(){
-      binTree = new BinTree(5);
-    });
-
-    it("should return a sorted Array", function(){
-      binTree.insert(3)
-        .insert(1).insert(2).insert(6)
-        .insert(7).insert(8).insert(9);
-      expect(binTree.sortedArray()).toEqual([1,2,3,4,5,6,7,8,9]);
-    });
-
-  });
-  describe("#height", function(){ 
-    var binTree;
-
-    beforeEach(function(){
-      binTree = new BinTree(5);
-    });
-
-    it("should return 0 when left and right are null", function(){
-      expect(binTree.height()).toBe(0);
-    });
-    it("should return a sorted Array", function(){
-      binTree.insert(3)
-        .insert(1).insert(2).insert(6)
-        .insert(7).insert(8).insert(9);
-      expect(binTree.height()).toEqual(2);
-    });
-
-  });
 })
