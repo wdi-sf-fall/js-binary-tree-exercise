@@ -1,4 +1,4 @@
-var BinTree = require("../binary_tree.js");
+var BinTree = require("../binary_tree.js")
 
 describe("BinTree", function(){
 
@@ -14,7 +14,7 @@ describe("BinTree", function(){
 
     it("right", function(){
       expect(binTree.hasOwnProperty("right")).toBe(true);
-    });
+    })
   });
 
   describe("has constructor defaults", function(){
@@ -90,4 +90,12 @@ describe("BinTree", function(){
     });
   });
 
-})
+  describe("isLeaf", function(){
+    var binTree = new BinTree(5);
+    binTree.insert(3).insert(1).insert(2).insert(6);
+      it("should check to see if a node is a leaf", function(){
+        expect(binTree.isLeaf(6)).toBe(true);
+      });
+    });
+
+});
