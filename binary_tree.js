@@ -8,12 +8,13 @@ function BinTree(value){
 BinTree.prototype.insert = function(){
 
 };
-BinTree.prototype.search = function(){
-
-};
 BinTree.prototype.isLeaf = function(){
 
 };
+BinTree.prototype.search = function(){
+
+};
+
 
 try{
   module.exports = BinTree;
