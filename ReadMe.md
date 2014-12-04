@@ -17,9 +17,5 @@
   * A BinaryTree
     * Implementation (Test Driven)
       * `#insert`
-      * `#max`
-      * `#min`
-      * REVIEW
-      * `search`
-      * `height`
-  * An N-arry Tree
+      * `#isLeaf`
+      * `#search`
