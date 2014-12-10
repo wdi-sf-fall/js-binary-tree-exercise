@@ -3,7 +3,10 @@ var BinTree = require("../binary_tree.js")
 describe("BinTree", function(){
 
   describe("hasOwnProperty", function(){
-    var binTree = new BinTree();
+    var binTree
+    beforeEach(function () { 
+       binTree = new BinTree();
+    });
     it("value", function(){
       expect(binTree.hasOwnProperty("value")).toBe(true);
     });
@@ -18,7 +21,9 @@ describe("BinTree", function(){
   });
 
   describe("has constructor defaults", function(){
-    var binTree = new BinTree();
+    beforeEach(function() {
+      binTree = new BinTree();
+    });
 
     it("set left to null", function(){
       expect(binTree.left).toBe(null);
@@ -30,8 +35,12 @@ describe("BinTree", function(){
   });
 
   describe("prototype has method", function(){
-    var binTree = new BinTree();
-    var proto = BinTree.prototype;
+    var binTree, proto;
+
+    beforeEach(function() {
+      binTree = new BinTree();
+      proto = BinTree.prototype;
+    });
 
     it("#insert", function(){
       expect(proto.hasOwnProperty("insert")).toBe(true);
@@ -48,9 +57,8 @@ describe("BinTree", function(){
   });
 
   describe("#insert", function(){
-    var binTree
-
     beforeEach(function(){
+      var binTree;
       binTree = new BinTree(5);
     });
 
@@ -100,9 +108,13 @@ describe("BinTree", function(){
   });
 
   describe("#search", function(){
-    var binTree = new BinTree(5);
-    [3,1,2,6,7,8,9].forEach(function(v) {
-      binTree.insert(v);
+    var binTree;
+
+    beforeEach(function() {
+      binTree = new BinTree(5);
+      [3,1,2,6,7,8,9].forEach(function(v) {
+        binTree.insert(v);
+      });      
     });
     it("should find a value in binTree with many values", function(){
       [3,1,2,6,7,8,9].forEach(function(v) {
@@ -118,10 +130,13 @@ describe("BinTree", function(){
   });
 
   describe("isLeaf", function(){
-    var binTree = new BinTree(5);
+    var binTree;
+    beforeEach(function() {
+      binTree = new BinTree(5);
 
-    [3,1,2,6].forEach(function(v) {
-      binTree.insert(v);
+      [3,1,2,6].forEach(function(v) {
+        binTree.insert(v);
+      });
     });
     
     it("should check to see if a node is a leaf", function(){
