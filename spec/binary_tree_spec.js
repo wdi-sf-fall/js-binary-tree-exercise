@@ -3,7 +3,10 @@ var BinTree = require("../binary_tree.js")
 describe("BinTree", function(){
 
   describe("hasOwnProperty", function(){
-    var binTree = new BinTree();
+    var binTree
+    beforeEach(function () { 
+       binTree = new BinTree();
+    });
     it("value", function(){
       expect(binTree.hasOwnProperty("value")).toBe(true);
     });
@@ -18,7 +21,9 @@ describe("BinTree", function(){
   });
 
   describe("has constructor defaults", function(){
-    var binTree = new BinTree();
+    beforeEach(function() {
+      binTree = new BinTree();
+    });
 
     it("set left to null", function(){
       expect(binTree.left).toBe(null);
@@ -30,8 +35,12 @@ describe("BinTree", function(){
   });
 
   describe("prototype has method", function(){
-    var binTree = new BinTree();
-    var proto = BinTree.prototype;
+    var binTree, proto;
+
+    beforeEach(function() {
+      binTree = new BinTree();
+      proto = BinTree.prototype;
+    });
 
     it("#insert", function(){
       expect(proto.hasOwnProperty("insert")).toBe(true);
@@ -48,54 +57,102 @@ describe("BinTree", function(){
   });
 
   describe("#insert", function(){
-    var binTree
+    describe("root with left and right", function () {
+      var binTree;
+      beforeEach(function(){
+        binTree = new BinTree(5);
+      });
 
-    beforeEach(function(){
-      binTree = new BinTree(5);
+      it("should add BinTree to this.left for newValue less than this.value",function(){
+        binTree.insert(4);
+        expect(binTree.left).not.toBe(null);
+        expect(binTree.left.value).toEqual(4);
+      });
+
+      it("should add BinTree to this.right for newValue greater than this.value",function(){
+        binTree.insert(6);
+        expect(binTree.right).not.toBe(null);
+        expect(binTree.right.value).toEqual(6);
+      });
     });
 
-    it("should add BinTree to this.left for newValue less than this.value",function(){
-      binTree.insert(4);
-      expect(binTree.left).not.toBe(null);
-      expect(binTree.left.value).toEqual(4);
+    describe("root with a bunch of nodes to the left, recursively", function() {
+      var binTree;
+      beforeEach(function(){
+        binTree = new BinTree(5);
+      });
+
+      it("should be able to insert multiple nodes on the left via root", function() {
+        [4,1,0,2].forEach(function(v) {
+          binTree.insert(v);
+        });
+        expect(binTree.value).toEqual(5);
+        expect(binTree.left.value).toEqual(4);
+        expect(binTree.left.left.value).toEqual(1);
+        expect(binTree.left.left.left.value).toEqual(0);
+        expect(binTree.left.left.right.value).toEqual(2);
+      });
     });
 
-    it("should add BinTree to this.right for newValue greater than this.value",function(){
-      binTree.insert(6);
-      expect(binTree.right).not.toBe(null);
-      expect(binTree.right.value).toEqual(6);
-    });
+    describe("root with a bunch of nodes to the left, recursively", function() {
+      var binTree;
+      beforeEach(function(){
+        binTree = new BinTree(5);
+      });
 
-    it("should return this", function(){
-      expect(binTree.insert(2)).toBe(binTree);
+      it("should be able to insert multiple nodes on the right via root", function() {
+        [6,10,7,12].forEach(function(v) {
+          binTree.insert(v);
+        });
+        binTree.insert(6);
+        binTree.insert(10);
+        binTree.insert(7);
+        binTree.insert(12);
+        expect(binTree.value).toEqual(5);
+        expect(binTree.right.value).toEqual(6);
+        expect(binTree.right.right.value).toEqual(10);
+        expect(binTree.right.right.left.value).toEqual(7);
+        expect(binTree.right.right.right.value).toEqual(12);
+      });
     });
-
   });
 
   describe("#search", function(){
-    var binTree = new BinTree(5);
-    binTree.insert(3)
-        .insert(1).insert(2).insert(6)
-        .insert(7).insert(8).insert(9);
-    it("should find a value in binTree with many values", function(){
-      expect(binTree.search(5)).toBe(true);
-      expect(binTree.search(1)).toBe(true);
-      expect(binTree.search(2)).toBe(true);
-      expect(binTree.search(8)).toBe(true);
-      expect(binTree.search(9)).toBe(true);
+    var binTree;
+
+    beforeEach(function() {
+      binTree = new BinTree(5);
+      [3,1,2,6,7,8,9].forEach(function(v) {
+        binTree.insert(v);
+      });      
     });
-    it("should return true or false", function(){
-      expect(typeof(binTree.search(8))).toBe("boolean");
-      expect(typeof(binTree.search(20))).toBe("boolean");
+    it("should find a value in binTree with many values", function(){
+      [3,1,2,6,7,8,9].forEach(function(v) {
+        expect(binTree.search(v)).toBe(true);
+      });
+    });
+    it("should return true, when it's found", function() {
+      expect(binTree.search(8)).toBe(true);
+    });
+    it("should return false, when it's not found", function() {
+      expect(binTree.search(20)).toBe(false);
     });
   });
 
   describe("isLeaf", function(){
-    var binTree = new BinTree(5);
-    binTree.insert(3).insert(1).insert(2).insert(6);
-      it("should check to see if a node is a leaf", function(){
-        expect(binTree.isLeaf(6)).toBe(true);
+    var binTree;
+    beforeEach(function() {
+      binTree = new BinTree(5);
+
+      [3,1,2,6].forEach(function(v) {
+        binTree.insert(v);
       });
     });
+    
+    it("should check to see if a node is a leaf", function(){
+      expect(binTree.left.left.right.isLeaf()).toBe(true);
+      expect(binTree.right.isLeaf()).toBe(true);
+    });
+  });
 
 });
