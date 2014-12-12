@@ -6,7 +6,6 @@ function BinTree(value){
 
 
 BinTree.prototype.insert = function(value){
-  console.log("insert", this.value);
   if (value < this.value) {
     if (this.left == null) {
       this.left = new BinTree(value);
